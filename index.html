@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="goban.js"></script>
+    <link rel="stylesheet" type="text/css" href="goban.css">
+    <meta charset="UTF-8">
+    <title>Gomoku</title>
+</head>
+<body>
+<div id="goban">
+    <div class="row r-0">
+        <div class="col c-0"></div>
+        <div class="col c-1"></div>
+        <div class="col c-2"></div>
+        <div class="col c-3"></div>
+        <div class="col c-4"></div>
+        <div class="col c-5"></div>
+        <div class="col c-6"></div>
+        <div class="col c-7"></div>
+        <div class="col c-8"></div>
+        <div class="col c-9"></div>
+        <div class="col c-10"></div>
+        <div class="col c-11"></div>
+        <div class="col c-12"></div>
+        <div class="col c-13"></div>
+        <div class="col c-14"></div>
+    </div>
+    <div class="row r-1">
+        <div class="col c-0"></div>
+        <div class="col c-1"></div>
+        <div class="col c-2"></div>
+        <div class="col c-3"></div>
+        <div class="col c-4"></div>
+        <div class="col c-5"></div>
+        <div class="col c-6"></div>
+        <div class="col c-7"></div>
+        <div class="col c-8"></div>
+        <div class="col c-9"></div>
+        <div class="col c-10"></div>
+        <div class="col c-11"></div>
+        <div class="col c-12"></div>
+        <div class="col c-13"></div>
+        <div class="col c-14"></div>
+    </div>
+    <div class="row r-2">
+        <div class="col c-0"></div>
+        <div class="col c-1"></div>
+        <div class="col c-2"></div>
+        <div class="col c-3"></div>
+        <div class="col c-4"></div>
+        <div class="col c-5"></div>
+        <div class="col c-6"></div>
+        <div class="col c-7"></div>
+        <div class="col c-8"></div>
+        <div class="col c-9"></div>
+        <div class="col c-10"></div>
+        <div class="col c-11"></div>
+        <div class="col c-12"></div>
+        <div class="col c-13"></div>
+        <div class="col c-14"></div>
+    </div>
+    <div class="row r-3">
+        <div class="col c-0"></div>
+        <div class="col c-1"></div>
+        <div class="col c-2"></div>
+        <div class="col c-3"></div>
+        <div class="col c-4"></div>
+        <div class="col c-5"></div>
+        <div class="col c-6"></div>
+        <div class="col c-7"></div>
+        <div class="col c-8"></div>
+        <div class="col c-9"></div>
+        <div class="col c-10"></div>
+        <div class="col c-11"></div>
+        <div class="col c-12"></div>
+        <div class="col c-13"></div>
+        <div class="col c-14"></div>
+    </div>
+    <div class="row r-4">
+        <div class="col c-0"></div>
+        <div class="col c-1"></div>
+        <div class="col c-2"></div>
+        <div class="col c-3"></div>
+        <div class="col c-4"></div>
+        <div class="col c-5"></div>
+        <div class="col c-6"></div>
+        <div class="col c-7"></div>
+        <div class="col c-8"></div>
+        <div class="col c-9"></div>
+        <div class="col c-10"></div>
+        <div class="col c-11"></div>
+        <div class="col c-12"></div>
+        <div class="col c-13"></div>
+        <div class="col c-14"></div>
+    </div>
+    <div class="row r-5">
+        <div class="col c-0"></div>
+        <div class="col c-1"></div>
+        <div class="col c-2"></div>
+        <div class="col c-3"></div>
+        <div class="col c-4"></div>
+        <div class="col c-5"></div>
+        <div class="col c-6"></div>
+        <div class="col c-7"></div>
+        <div class="col c-8"></div>
+        <div class="col c-9"></div>
+        <div class="col c-10"></div>
+        <div class="col c-11"></div>
+        <div class="col c-12"></div>
+        <div class="col c-13"></div>
+        <div class="col c-14"></div>
+    </div>
+    <div class="row r-6">
+        <div class="col c-0"></div>
+        <div class="col c-1"></div>
+        <div class="col c-2"></div>
+        <div class="col c-3"></div>
+        <div class="col c-4"></div>
+        <div class="col c-5"></div>
+        <div class="col c-6"></div>
+        <div class="col c-7"></div>
+        <div class="col c-8"></div>
+        <div class="col c-9"></div>
+        <div class="col c-10"></div>
+        <div class="col c-11"></div>
+        <div class="col c-12"></div>
+        <div class="col c-13"></div>
+        <div class="col c-14"></div>
+    </div>
+    <div class="row r-7">
+        <div class="col c-0"></div>
+        <div class="col c-1"></div>
+        <div class="col c-2"></div>
+        <div class="col c-3"></div>
+        <div class="col c-4"></div>
+        <div class="col c-5"></div>
+        <div class="col c-6"></div>
+        <div class="col c-7"></div>
+        <div class="col c-8"></div>
+        <div class="col c-9"></div>
+        <div class="col c-10"></div>
+        <div class="col c-11"></div>
+        <div class="col c-12"></div>
+        <div class="col c-13"></div>
+        <div class="col c-14"></div>
+    </div>
+    <div class="row r-8">
+        <div class="col c-0"></div>
+        <div class="col c-1"></div>
+        <div class="col c-2"></div>
+        <div class="col c-3"></div>
+        <div class="col c-4"></div>
+        <div class="col c-5"></div>
+        <div class="col c-6"></div>
+        <div class="col c-7"></div>
+        <div class="col c-8"></div>
+        <div class="col c-9"></div>
+        <div class="col c-10"></div>
+        <div class="col c-11"></div>
+        <div class="col c-12"></div>
+        <div class="col c-13"></div>
+        <div class="col c-14"></div>
+    </div>
+    <div class="row r-9">
+        <div class="col c-0"></div>
+        <div class="col c-1"></div>
+        <div class="col c-2"></div>
+        <div class="col c-3"></div>
+        <div class="col c-4"></div>
+        <div class="col c-5"></div>
+        <div class="col c-6"></div>
+        <div class="col c-7"></div>
+        <div class="col c-8"></div>
+        <div class="col c-9"></div>
+        <div class="col c-10"></div>
+        <div class="col c-11"></div>
+        <div class="col c-12"></div>
+        <div class="col c-13"></div>
+        <div class="col c-14"></div>
+    </div>
+    <div class="row r-10">
+        <div class="col c-0"></div>
+        <div class="col c-1"></div>
+        <div class="col c-2"></div>
+        <div class="col c-3"></div>
+        <div class="col c-4"></div>
+        <div class="col c-5"></div>
+        <div class="col c-6"></div>
+        <div class="col c-7"></div>
+        <div class="col c-8"></div>
+        <div class="col c-9"></div>
+        <div class="col c-10"></div>
+        <div class="col c-11"></div>
+        <div class="col c-12"></div>
+        <div class="col c-13"></div>
+        <div class="col c-14"></div>
+    </div>
+    <div class="row r-11">
+        <div class="col c-0"></div>
+        <div class="col c-1"></div>
+        <div class="col c-2"></div>
+        <div class="col c-3"></div>
+        <div class="col c-4"></div>
+        <div class="col c-5"></div>
+        <div class="col c-6"></div>
+        <div class="col c-7"></div>
+        <div class="col c-8"></div>
+        <div class="col c-9"></div>
+        <div class="col c-10"></div>
+        <div class="col c-11"></div>
+        <div class="col c-12"></div>
+        <div class="col c-13"></div>
+        <div class="col c-14"></div>
+    </div>
+    <div class="row r-12">
+        <div class="col c-0"></div>
+        <div class="col c-1"></div>
+        <div class="col c-2"></div>
+        <div class="col c-3"></div>
+        <div class="col c-4"></div>
+        <div class="col c-5"></div>
+        <div class="col c-6"></div>
+        <div class="col c-7"></div>
+        <div class="col c-8"></div>
+        <div class="col c-9"></div>
+        <div class="col c-10"></div>
+        <div class="col c-11"></div>
+        <div class="col c-12"></div>
+        <div class="col c-13"></div>
+        <div class="col c-14"></div>
+    </div>
+    <div class="row r-13">
+        <div class="col c-0"></div>
+        <div class="col c-1"></div>
+        <div class="col c-2"></div>
+        <div class="col c-3"></div>
+        <div class="col c-4"></div>
+        <div class="col c-5"></div>
+        <div class="col c-6"></div>
+        <div class="col c-7"></div>
+        <div class="col c-8"></div>
+        <div class="col c-9"></div>
+        <div class="col c-10"></div>
+        <div class="col c-11"></div>
+        <div class="col c-12"></div>
+        <div class="col c-13"></div>
+        <div class="col c-14"></div>
+    </div>
+    <div class="row r-14">
+        <div class="col c-0"></div>
+        <div class="col c-1"></div>
+        <div class="col c-2"></div>
+        <div class="col c-3"></div>
+        <div class="col c-4"></div>
+        <div class="col c-5"></div>
+        <div class="col c-6"></div>
+        <div class="col c-7"></div>
+        <div class="col c-8"></div>
+        <div class="col c-9"></div>
+        <div class="col c-10"></div>
+        <div class="col c-11"></div>
+        <div class="col c-12"></div>
+        <div class="col c-13"></div>
+        <div class="col c-14"></div>
+    </div>
+
+</div>
+</body>
+</html>

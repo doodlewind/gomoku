@@ -1,0 +1,54 @@
+html {
+    height: 800px;
+    background: linear-gradient(to bottom, rgba(210,210,210,1) 100%, rgba(255,255,255,1) 0%);
+}
+#goban {
+    padding-top: 40px;
+    width: 600px;
+    margin: auto;
+}
+.row {
+    clear: both;
+}
+.col {
+    display: table;
+    float: left;
+    margin: 0;
+    width: 40px;
+    height: 40px;
+    background:
+    linear-gradient(to bottom, transparent 48%,
+            #4c4c4c 48%,
+            #4c4c4c 52%,
+            transparent 52%),
+    linear-gradient(to right, transparent 48%,
+            #4c4c4c 48%,
+            #4c4c4c 52%,
+            transparent 52%);
+
+}
+.black{
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 2em;
+    color: black;
+}
+.white{
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 2em;
+    color: white;
+}
+.col:hover {
+    background:
+    linear-gradient(to bottom, transparent 47%,
+        white 47%,
+        white 53%,
+        transparent 53%),
+    linear-gradient(to right, transparent 47%,
+        white 47%,
+        white 53%,
+        transparent 53%);
+}
