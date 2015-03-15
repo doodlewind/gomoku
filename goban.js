@@ -4,6 +4,7 @@ window.onload = function() {
     var WHITE = 2;
     var SIZE = 10;
     var goban = [];
+    var firstFlag = true;
     for (var i = 0; i < SIZE; i++) {
         goban[i] = [];
         for (var j = 0; j < SIZE; j++) {
@@ -61,8 +62,25 @@ window.onload = function() {
 
         if (goban[row][col] == EMPTY) {
             set(row, col, BLACK);
-            var pos = SIFU.think(goban, WHITE);
-            set(pos.x, pos.y, WHITE);
+            if (firstFlag) {
+                if (row % 2 == 0 && col % 2 == 0) {
+                    set(row - 1, col - 1, WHITE);
+                }
+                else if (row % 2 == 0 && col % 2 == 1) {
+                    set(row - 1, col + 1, WHITE);
+                }
+                else if (row % 2 == 1 && col % 2 == 0) {
+                    set(row + 1, col - 1, WHITE);
+                }
+                else {
+                    set(row - 1, col - 1, WHITE);
+                }
+                firstFlag = false;
+            }
+            else {
+                var pos = SIFU.think(goban, WHITE);
+                set(pos.x, pos.y, WHITE);
+            }
         }
 
         if (hasFive(BLACK)) alert("BLACK WINS!");
