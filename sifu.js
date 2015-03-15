@@ -9,13 +9,11 @@ var SIFU = (function() {
     var BLACK = 1;
     var WHITE = 2;
     var SIZE = 10;
+    var DEPTH = 2;
 
     var sifu = {};
-
     sifu.think = function(goban, color) {
-        this.goban = copy(goban);
-        var answer = minimaxWithMove(this.goban, 1, color);
-        // alert(answer.x + '-' + answer.y);
+        var answer = minimaxWithMove(goban, DEPTH, color);
         return answer;
     };
 
@@ -360,22 +358,28 @@ var SIFU = (function() {
         var wThree = openThrees(WHITE);
         var wFour = fours(WHITE);
 
-        if (bThree + fours > 1) {
-            count += (bThree + bFour) * 50;
+        if (bThree + bFour > 1) {
+            count += (bThree + bFour) * 1000;
         }else {
-            count += (bTwo + bThree * 2 + bFour * 2) * 10;
+            count += (bTwo + bThree * 2 + bFour * 2) * 80;
         }
-        if (hasFive(BLACK) || hasOpenFour(BLACK)) {
-            count += 1000;
+        if (hasOpenFour(BLACK)) {
+            count += 500;
+        }
+        if (hasFive(BLACK)) {
+            count += 2000;
         }
 
         if (wThree + wFour > 1) {
-            count -= (wThree + wFour) * 50;
+            count -= (wThree + wFour) * 500;
         }else {
-            count -= (wTwo + wThree * 2 + wFour * 2) * 10;
+            count -= (wTwo + wThree * 2 + wFour * 2) * 80;
         }
-        if (hasFive(WHITE) || hasOpenFour(WHITE)) {
-            count -= 1000;
+        if (hasOpenFour(WHITE)) {
+            count -= 500;
+        }
+        if (hasFive(WHITE)) {
+            count -= 2000;
         }
         return count;
     };
@@ -391,6 +395,33 @@ var SIFU = (function() {
         return g;
     }
 
+    function setVision(goban) {
+        var vision = [];
+        for (var i = 0; i < SIZE; i++) {
+            vision[i] = [];
+            for (var j = 0; j < SIZE; j++) {
+                vision[i][j] = false;
+            }
+        }
+
+        for (var i = 0; i < SIZE; i++) {
+            for (var j = 0; j < SIZE; j++) {
+                if (goban[i][j] != EMPTY) {
+                    var x = Math.max(i - 1, 0);
+                    var xMax = Math.min(i + 1, SIZE - 1);
+                    var yMax = Math.min(j + 1, SIZE - 1);
+                    for (; x <= xMax; x++) {
+                        var y = Math.max(j - 1, 0);
+                        for (; y <= yMax; y++) {
+                            vision[x][y] = true;
+                        }
+                    }
+                }
+            }
+        }
+        return vision;
+    }
+
     function show(score, row, col) {
         var square= document.getElementsByClassName('row r-' + row)[0].children[col];
         square.innerHTML = '<span class="score">' + score + '</span>';
@@ -399,21 +430,22 @@ var SIFU = (function() {
     function minimaxWithMove(goban, depth, color) {
         var pos, score;
         var g = goban;
+        var vision = setVision(goban);
 
         if (color == WHITE) {
             var value = 9999;
             for (var i = 0; i < SIZE; i++) {
                 for (var j = 0; j < SIZE; j++) {
-                    if (g[i][j] == EMPTY) {
+                    if (vision[i][j] == true && g[i][j] == EMPTY) {
                         g[i][j] = WHITE;
-                        //score = sifu.evaluate(g, BLACK);
-                        score = minimax(g, depth, BLACK);
+                        // score = sifu.evaluate(g, BLACK);
+                        score = minimax(g, depth - 1, BLACK);
                         if (score < value) {
                             value = score;
                             pos = {x: i, y: j};
                         }
                         g[i][j] = EMPTY;
-                        //show(alpha, i, j);
+                        // show(alpha, i, j);
                     }
                 }
             }
@@ -424,13 +456,15 @@ var SIFU = (function() {
     function minimax(goban, depth, color) {
         var pos, score;
         var g = goban;
+        var vision = setVision(goban);
+
         if (depth == 0) return sifu.evaluate(g, color);
 
         if (color == BLACK) {
             var value = -9999;
             for (var i = 0; i < SIZE; i++) {
                 for (var j = 0; j < SIZE; j++) {
-                    if (g[i][j] == EMPTY) {
+                    if (vision[i][j] == true && g[i][j] == EMPTY) {
                         g[i][j] = BLACK;
 
                         score = minimax(g, depth - 1, WHITE);

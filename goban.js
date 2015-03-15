@@ -62,25 +62,8 @@ window.onload = function() {
 
         if (goban[row][col] == EMPTY) {
             set(row, col, BLACK);
-            if (firstFlag) {
-                if (row % 2 == 0 && col % 2 == 0) {
-                    set(row - 1, col - 1, WHITE);
-                }
-                else if (row % 2 == 0 && col % 2 == 1) {
-                    set(row - 1, col + 1, WHITE);
-                }
-                else if (row % 2 == 1 && col % 2 == 0) {
-                    set(row + 1, col - 1, WHITE);
-                }
-                else {
-                    set(row - 1, col - 1, WHITE);
-                }
-                firstFlag = false;
-            }
-            else {
-                var pos = SIFU.think(goban, WHITE);
-                set(pos.x, pos.y, WHITE);
-            }
+            var pos = SIFU.think(goban, WHITE);
+            set(pos.x, pos.y, WHITE);
         }
 
         if (hasFive(BLACK)) alert("BLACK WINS!");
