@@ -10,7 +10,6 @@ var SIFU = (function() {
     var WHITE = 2;
     var SIZE = 10;
     var DEPTH = 2;
-
     var sifu = {};
     sifu.think = function(goban, color) {
         var answer = minimaxWithMove(goban, DEPTH, color);
@@ -19,10 +18,9 @@ var SIFU = (function() {
 
     sifu.evaluate = function(goban, color) {
         var count = 0;
+        var g = goban;
 
         function hasFive(color) {
-            var g = copy(goban);
-
             for (var i = 0; i < SIZE; i++) {
                 for (var j = 0; j < SIZE; j++) {
                     if (
@@ -65,8 +63,6 @@ var SIFU = (function() {
         }
 
         function hasOpenFour(color) {
-            var g = copy(goban);
-
             for (var i = 0; i < SIZE; i++) {
                 for (var j = 0; j < SIZE; j++) {
                     if (
@@ -113,8 +109,6 @@ var SIFU = (function() {
         }
 
         function fours(color) {
-            var g = copy(goban);
-
             var count = 0;
 
             for (var i = 0; i < SIZE; i++) {
@@ -266,7 +260,6 @@ var SIFU = (function() {
 
         function openThrees(color) {
             var count = 0;
-            var g = copy(goban);
 
             for (var i = 0; i < SIZE; i++) {
                 for (var j = 0; j < SIZE; j++) {
@@ -311,7 +304,6 @@ var SIFU = (function() {
 
         function openTwos(color) {
             var count = 0;
-            var g = copy(goban);
 
             for (var i = 0; i < SIZE; i++) {
                 for (var j = 0; j < SIZE; j++) {
@@ -384,17 +376,6 @@ var SIFU = (function() {
         return count;
     };
 
-    function copy(goban) {
-        var g = [];
-        for (var i = 0; i < SIZE; i++) {
-            g[i] = [];
-            for (var j = 0; j < SIZE; j++) {
-                g[i][j] = goban[i][j];
-            }
-        }
-        return g;
-    }
-
     function setVision(goban) {
         var vision = [];
         for (var i = 0; i < SIZE; i++) {
@@ -422,12 +403,8 @@ var SIFU = (function() {
         return vision;
     }
 
-    function show(score, row, col) {
-        var square= document.getElementsByClassName('row r-' + row)[0].children[col];
-        square.innerHTML = '<span class="score">' + score + '</span>';
-    }
-
     function minimaxWithMove(goban, depth, color) {
+        //var start = new Date().getTime();
         var pos, score;
         var g = goban;
         var vision = setVision(goban);
@@ -439,24 +416,24 @@ var SIFU = (function() {
                     if (vision[i][j] == true && g[i][j] == EMPTY) {
                         g[i][j] = WHITE;
                         // score = sifu.evaluate(g, BLACK);
-                        score = minimax(g, depth - 1, BLACK);
+                        score = minimax(g, vision, depth - 1, -9999, 9999, BLACK);
+                        g[i][j] = EMPTY;
                         if (score < value) {
                             value = score;
                             pos = {x: i, y: j};
                         }
-                        g[i][j] = EMPTY;
                         // show(alpha, i, j);
                     }
                 }
             }
         }
+        //var end = new Date().getTime();
         return pos;
     }
 
-    function minimax(goban, depth, color) {
+    function minimax(goban, vision, depth, alpha, beta, color) {
         var pos, score;
         var g = goban;
-        var vision = setVision(goban);
 
         if (depth == 0) return sifu.evaluate(g, color);
 
@@ -465,14 +442,19 @@ var SIFU = (function() {
             for (var i = 0; i < SIZE; i++) {
                 for (var j = 0; j < SIZE; j++) {
                     if (vision[i][j] == true && g[i][j] == EMPTY) {
-                        g[i][j] = BLACK;
 
-                        score = minimax(g, depth - 1, WHITE);
+                        g[i][j] = BLACK;
+                        score = minimax(g, vision, depth - 1, alpha, beta, WHITE);
+                        g[i][j] = EMPTY;
+
                         if (score > value) {
                             value = score;
                             pos = {x: i, y: j};
                         }
-                        g[i][j] = EMPTY;
+                        alpha = Math.max(alpha, score);
+                        if (alpha >= beta) {
+                            break;
+                        }
                     }
                 }
             }
@@ -483,14 +465,19 @@ var SIFU = (function() {
             for (var i = 0; i < SIZE; i++) {
                 for (var j = 0; j < SIZE; j++) {
                     if (g[i][j] == EMPTY) {
-                        g[i][j] = WHITE;
 
-                        score = minimax(g, depth - 1, BLACK);
+                        g[i][j] = WHITE;
+                        score = minimax(g, vision, depth - 1, alpha, beta, BLACK);
+                        g[i][j] = EMPTY;
                         if (score < value) {
                             value = score;
                             pos = {x: i, y: j};
                         }
-                        g[i][j] = EMPTY;
+
+                        beta = Math.min(beta, score);
+                        if (beta <= alpha) {
+                            break;
+                        }
                     }
                 }
             }
