@@ -1,135 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="goban.css">
     <script type="text/javascript" src="sifu.js"></script>
     <script type="text/javascript" src="goban.js"></script>
-    <link rel="stylesheet" type="text/css" href="goban.css">
-    <meta charset="UTF-8">
-    <title>Gomoku</title>
+    <title>Gomoku Sifu</title>
 </head>
 <body>
-<div id="goban">
-    <div class="row r-0">
-        <div class="col c-0"></div>
-        <div class="col c-1"></div>
-        <div class="col c-2"></div>
-        <div class="col c-3"></div>
-        <div class="col c-4"></div>
-        <div class="col c-5"></div>
-        <div class="col c-6"></div>
-        <div class="col c-7"></div>
-        <div class="col c-8"></div>
-        <div class="col c-9"></div>
-    </div>
-    <div class="row r-1">
-        <div class="col c-0"></div>
-        <div class="col c-1"></div>
-        <div class="col c-2"></div>
-        <div class="col c-3"></div>
-        <div class="col c-4"></div>
-        <div class="col c-5"></div>
-        <div class="col c-6"></div>
-        <div class="col c-7"></div>
-        <div class="col c-8"></div>
-        <div class="col c-9"></div>
-    </div>
-    <div class="row r-2">
-        <div class="col c-0"></div>
-        <div class="col c-1"></div>
-        <div class="col c-2"></div>
-        <div class="col c-3"></div>
-        <div class="col c-4"></div>
-        <div class="col c-5"></div>
-        <div class="col c-6"></div>
-        <div class="col c-7"></div>
-        <div class="col c-8"></div>
-        <div class="col c-9"></div>
-    </div>
-    <div class="row r-3">
-        <div class="col c-0"></div>
-        <div class="col c-1"></div>
-        <div class="col c-2"></div>
-        <div class="col c-3"></div>
-        <div class="col c-4"></div>
-        <div class="col c-5"></div>
-        <div class="col c-6"></div>
-        <div class="col c-7"></div>
-        <div class="col c-8"></div>
-        <div class="col c-9"></div>
-    </div>
-    <div class="row r-4">
-        <div class="col c-0"></div>
-        <div class="col c-1"></div>
-        <div class="col c-2"></div>
-        <div class="col c-3"></div>
-        <div class="col c-4"></div>
-        <div class="col c-5"></div>
-        <div class="col c-6"></div>
-        <div class="col c-7"></div>
-        <div class="col c-8"></div>
-        <div class="col c-9"></div>
-    </div>
-    <div class="row r-5">
-        <div class="col c-0"></div>
-        <div class="col c-1"></div>
-        <div class="col c-2"></div>
-        <div class="col c-3"></div>
-        <div class="col c-4"></div>
-        <div class="col c-5"></div>
-        <div class="col c-6"></div>
-        <div class="col c-7"></div>
-        <div class="col c-8"></div>
-        <div class="col c-9"></div>
-    </div>
-    <div class="row r-6">
-        <div class="col c-0"></div>
-        <div class="col c-1"></div>
-        <div class="col c-2"></div>
-        <div class="col c-3"></div>
-        <div class="col c-4"></div>
-        <div class="col c-5"></div>
-        <div class="col c-6"></div>
-        <div class="col c-7"></div>
-        <div class="col c-8"></div>
-        <div class="col c-9"></div>
-    </div>
-    <div class="row r-7">
-        <div class="col c-0"></div>
-        <div class="col c-1"></div>
-        <div class="col c-2"></div>
-        <div class="col c-3"></div>
-        <div class="col c-4"></div>
-        <div class="col c-5"></div>
-        <div class="col c-6"></div>
-        <div class="col c-7"></div>
-        <div class="col c-8"></div>
-        <div class="col c-9"></div>
-    </div>
-    <div class="row r-8">
-        <div class="col c-0"></div>
-        <div class="col c-1"></div>
-        <div class="col c-2"></div>
-        <div class="col c-3"></div>
-        <div class="col c-4"></div>
-        <div class="col c-5"></div>
-        <div class="col c-6"></div>
-        <div class="col c-7"></div>
-        <div class="col c-8"></div>
-        <div class="col c-9"></div>
-    </div>
-    <div class="row r-9">
-        <div class="col c-0"></div>
-        <div class="col c-1"></div>
-        <div class="col c-2"></div>
-        <div class="col c-3"></div>
-        <div class="col c-4"></div>
-        <div class="col c-5"></div>
-        <div class="col c-6"></div>
-        <div class="col c-7"></div>
-        <div class="col c-8"></div>
-        <div class="col c-9"></div>
-    </div>
+<nav>
+    <em>Sifu</em>
+    <button id="level">Fast</button>
+    <button id="color">Black</button>
+    <button id="restart">Retry</button>
+</nav>
 
+<div id="modal" class="modalDialog">
+    <div>
+        <a id="close" href="#close" title="Close" class="close">Retry</a>
+        <h1 id = "result"></h1>
+    </div>
 </div>
+
+<div id="wait" class="modalDialog">
+    <div>
+        <h2>...Sifu is thinking...</h2>
+    </div>
+</div>
+
+<!--goban insert here-->
 </body>
 </html>

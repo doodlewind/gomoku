@@ -1,38 +1,74 @@
-html {
-    height: 800px;
-    background: lightgray;
+body {
+    margin: 0;
+    padding: 0;
+    background: #fffdf8;
+}
+nav {
+    height:50px;
+    padding-top: 10px;
+    background: #b9d7cc;
+    width: auto;
+    margin: 0;
 }
 #goban {
-    padding-top: 40px;
-    width: 400px;
+    padding-top: 0px;
     margin: auto;
+    margin-top: 10px;
+    overflow: auto;
 }
 .row {
     clear: both;
 }
+h1, h2, h3{
+    text-align: center;
+}
+em {
+    margin-left: 10px;
+    margin-right: 5px;
+    vertical-align: middle;
+    color: #ffffff;
+    font-size: 2em;
+    font-family: serif;
+}
+
+button {
+    margin-left: 2px;
+    vertical-align: top;
+    text-align: center;
+    width: 24%;
+    max-width: 100px;
+    height: 40px;
+
+    border: 2px #fff solid;
+    color: #ffffff;
+    font-size: 1em;
+    font-family: serif;
+    background: transparent;
+    transition-duration: 0.4s;
+    font-weight: lighter;
+}
+
 .col {
     display: table;
     float: left;
     margin: 0;
-    width: 40px;
-    height: 40px;
     background:
     linear-gradient(to bottom, transparent 48%,
-            #4c4c4c 48%,
-            #4c4c4c 52%,
+            #b9d8cc 48%,
+            #b9d8cc 52%,
             transparent 52%),
     linear-gradient(to right, transparent 48%,
-            #4c4c4c 48%,
-            #4c4c4c 52%,
+            #b9d8cc 48%,
+            #b9d8cc 52%,
             transparent 52%);
-
 }
 .black {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
-    font-size: 2em;
-    color: black;
+    font-size: 1.4em;
+    color: #999;
+    text-shadow: 1px 2px 3px #89807d;
 }
 .score {
     display: table-cell;
@@ -44,17 +80,61 @@ html {
     display: table-cell;
     text-align: center;
     vertical-align: middle;
-    font-size: 2em;
-    color: white;
+    font-size: 1.4em;
+    color: #fff;
+    text-shadow: 1px 2px 3px #89807d;
 }
 .col:hover {
     background:
     linear-gradient(to bottom, transparent 47%,
-        white 47%,
-        white 53%,
+        #9cbbfd 47%,
+        #9cbbfd 53%,
         transparent 53%),
     linear-gradient(to right, transparent 47%,
-        white 47%,
-        white 53%,
+        #9cbbfd 47%,
+        #9cbbfd 53%,
         transparent 53%);
+}
+.modalDialog {
+    position: fixed;
+    font-family: serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+.modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+}
+.modalDialog > div {
+    padding: 20px;
+    width: 250px;
+    position: relative;
+    margin: 20% auto;
+    background: rgba(185, 216, 204, 0.5);
+    border: 2px #fff solid;
+    color: #ffffff;
+}
+.close {
+    background: #606061;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
 }

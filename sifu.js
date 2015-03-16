@@ -3,16 +3,14 @@
 //   1. an 2d array by 15x15
 //   2. the color it plays
 // then returns row and column number of its next move
-
 var SIFU = (function() {
     var EMPTY = 0;
     var BLACK = 1;
     var WHITE = 2;
     var SIZE = 10;
-    var DEPTH = 2;
     var sifu = {};
-    sifu.think = function(goban, color) {
-        var answer = minimaxWithMove(goban, DEPTH, color);
+    sifu.think = function(goban, level, color) {
+        var answer = minimaxWithMove(goban, level, color);
         return answer;
     };
 
@@ -427,6 +425,24 @@ var SIFU = (function() {
                 }
             }
         }
+
+        else {
+            var value = -9999;
+            for (var i = 0; i < SIZE; i++) {
+                for (var j = 0; j < SIZE; j++) {
+                    if (vision[i][j] == true && g[i][j] == EMPTY) {
+                        g[i][j] = BLACK;
+                        score = minimax(g, vision, depth - 1, -9999, 9999, WHITE);
+                        g[i][j] = EMPTY;
+                        if (score > value) {
+                            value = score;
+                            pos = {x: i, y: j};
+                        }
+                    }
+                }
+            }
+        }
+
         //var end = new Date().getTime();
         return pos;
     }
@@ -487,3 +503,9 @@ var SIFU = (function() {
 
     return sifu;
 }());
+
+self.onmessage = function (event) {
+    var data = event.data;
+    var pos = SIFU.think(data.goban, data.level, data.color);
+    self.postMessage(pos);
+};
