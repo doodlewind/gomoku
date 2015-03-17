@@ -480,7 +480,7 @@ var SIFU = (function() {
             var value = 9999;
             for (var i = 0; i < SIZE; i++) {
                 for (var j = 0; j < SIZE; j++) {
-                    if (g[i][j] == EMPTY) {
+                    if (vision[i][j] == true && g[i][j] == EMPTY) {
 
                         g[i][j] = WHITE;
                         score = minimax(g, vision, depth - 1, alpha, beta, BLACK);
